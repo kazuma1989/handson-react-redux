@@ -2,7 +2,17 @@
   "name": "hello-react",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
-  "dependencies": {},
-  "devDependencies": {}
+  "scripts": {
+    "start": "parcel ./index.html"
+  },
+  "dependencies": {
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0"
+  },
+  "devDependencies": {
+    "@types/react": "^16.9.11",
+    "@types/react-dom": "^16.9.4",
+    "parcel-bundler": "^1.12.4",
+    "typescript": "^3.7.2"
+  }
 }
