@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    // Transpile for latest browsers.
+    "target": "esnext",
+
+    // Required for dynamic import.
+    "module": "esnext",
+
+    // Use `import React from "react"` instead of `import * as React from "react"`.
+    "allowSyntheticDefaultImports": true,
+
+    // Required for Parcel to use JSX.
+    "jsx": "react",
+
+    // Useful type checks.
+    "strictNullChecks": true,
+    "noEmit": true
+  }
+}
