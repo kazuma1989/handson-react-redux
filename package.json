@@ -3,5 +3,11 @@
   "workspaces": [
     "hello-react",
     "hello-react-redux"
-  ]
+  ],
+  "scripts": {
+    "check-types": "tsc"
+  },
+  "devDependencies": {
+    "typescript": "^3.7.2"
+  }
 }
