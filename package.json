@@ -6,7 +6,7 @@
     "understanding-reducer"
   ],
   "scripts": {
-    "format": "prettier --write '**/*.{ts,tsx,json,html,md}'",
+    "format": "prettier --write '**/*.{ts,tsx,json,html,md}' '!**/{.cache,dist}/**'",
     "compile": "tsc"
   },
   "devDependencies": {
