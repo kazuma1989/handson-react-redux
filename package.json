@@ -5,9 +5,11 @@
     "hello-react-redux"
   ],
   "scripts": {
-    "check-types": "tsc"
+    "format": "prettier --write '**/*.{ts,tsx,json,html,md}'",
+    "compile": "tsc"
   },
   "devDependencies": {
+    "prettier": "^1.18.2",
     "typescript": "^3.7.2"
   }
 }
