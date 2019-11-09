@@ -6,6 +6,9 @@
     // Required for dynamic import.
     "module": "esnext",
 
+    // Some packages need this option.
+    "moduleResolution": "node",
+
     // Use `import React from "react"` instead of `import * as React from "react"`.
     "allowSyntheticDefaultImports": true,
 
