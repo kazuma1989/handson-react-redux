@@ -3,9 +3,6 @@
     // Transpile for latest browsers.
     "target": "esnext",
 
-    // Required for dynamic import.
-    "module": "esnext",
-
     // Some packages need this option.
     "moduleResolution": "node",
 

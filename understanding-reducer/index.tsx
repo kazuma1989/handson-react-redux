@@ -1,5 +1,7 @@
 import React, { useState, useReducer } from 'react'
 import ReactDOM from 'react-dom'
+import { createStore, Dispatch } from 'redux'
+import { useSelector, Provider, useDispatch } from 'react-redux'
 
 // --------------------
 // State
@@ -93,7 +95,10 @@ type Action =
       type: 'DECREMENT'
     }
 
-function reducer(state: State, action: Action): State {
+function reducer(
+  state: State | undefined = { count: 0 },
+  action: Action,
+): State {
   switch (action.type) {
     case 'INCREMENT': {
       return {
@@ -108,11 +113,18 @@ function reducer(state: State, action: Action): State {
         count: state.count - 1,
       }
     }
+
+    default: {
+      const _: never = action
+      return state
+    }
   }
 }
 
+const initialState = reducer(undefined, {} as any)
+
 function AppUseStateWithReducer() {
-  const [state, setState] = useState<State>({ count: 0 })
+  const [state, setState] = useState(initialState)
   const dispatch = (action: Action) =>
     setState(prevState => reducer(prevState, action))
 
@@ -155,7 +167,7 @@ function useMyReducer(
 }
 
 function AppUseMyReducer() {
-  const [state, dispatch] = useMyReducer(reducer, { count: 0 })
+  const [state, dispatch] = useMyReducer(reducer, initialState)
 
   const increment = () => {
     dispatch({
@@ -185,7 +197,7 @@ function AppUseMyReducer() {
 // useReducer
 
 function AppUseReducer() {
-  const [state, dispatch] = useReducer(reducer, { count: 0 })
+  const [state, dispatch] = useReducer(reducer, initialState)
 
   const increment = () => {
     dispatch({
@@ -212,7 +224,40 @@ function AppUseReducer() {
 }
 
 // --------------------
+// with Redux
+
+function AppWithRedux() {
+  const count = useSelector((state: State) => state.count)
+  const dispatch = useDispatch<Dispatch<Action>>()
+
+  const increment = () => {
+    dispatch({
+      type: 'INCREMENT',
+    })
+  }
+  const decrement = () => {
+    dispatch({
+      type: 'DECREMENT',
+    })
+  }
+
+  return (
+    <div>
+      {count}
+      <button type="button" onClick={increment}>
+        +
+      </button>
+      <button type="button" onClick={decrement}>
+        -
+      </button>
+    </div>
+  )
+}
+
+// --------------------
 // bootstrap
+
+const store = createStore(reducer)
 
 ReactDOM.render(
   <div>
@@ -225,6 +270,10 @@ ReactDOM.render(
     <AppUseMyReducer />
     <hr />
     <AppUseReducer />
+    <hr />
+    <Provider store={store}>
+      <AppWithRedux />
+    </Provider>
   </div>,
   document.getElementById('root'),
 )
