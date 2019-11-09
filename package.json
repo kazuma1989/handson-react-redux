@@ -3,7 +3,8 @@
   "workspaces": [
     "hello-react",
     "hello-react-redux",
-    "understanding-reducer"
+    "understanding-reducer",
+    "root-state-vs-store"
   ],
   "scripts": {
     "format": "prettier --write '**/*.{ts,tsx,json,html,md}' '!**/{.cache,dist}/**'",
