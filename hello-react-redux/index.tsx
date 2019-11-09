@@ -1,5 +1,36 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
+import { createStore } from 'redux'
+import { useSelector, Provider } from 'react-redux'
+
+type State = {
+  name: string
+}
+
+type Action = {
+  type: 'SET_NAME'
+  payload: string
+}
+
+function reducer(
+  state: State | undefined = {
+    name: '',
+  },
+  action: Action,
+) {
+  switch (action.type) {
+    case 'SET_NAME': {
+      return {
+        ...state,
+        name: action.payload,
+      }
+    }
+
+    default: {
+      return state
+    }
+  }
+}
 
 function AppStatic() {
   return (
@@ -10,7 +41,7 @@ function AppStatic() {
 }
 
 function AppStaticState() {
-  const [name, setName] = useState('')
+  const name = useSelector((state: State) => state.name)
 
   return (
     <div>
@@ -111,8 +142,10 @@ function AppInputArray() {
   )
 }
 
+const store = createStore(reducer)
+
 ReactDOM.render(
-  <div>
+  <Provider store={store}>
     <AppStatic />
     <hr />
     <AppStaticState />
@@ -126,6 +159,6 @@ ReactDOM.render(
     <AppInputArrayStatic />
     <hr />
     <AppInputArray />
-  </div>,
+  </Provider>,
   document.getElementById('root'),
 )
