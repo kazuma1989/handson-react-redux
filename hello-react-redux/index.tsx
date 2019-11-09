@@ -1,23 +1,36 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
-import { createStore } from 'redux'
-import { useSelector, Provider } from 'react-redux'
+import { createStore, Dispatch } from 'redux'
+import { useSelector, Provider, useDispatch } from 'react-redux'
 
 type State = {
   name: string
+  nameList: string[]
 }
 
-type Action = {
-  type: 'SET_NAME'
-  payload: string
-}
+type Action =
+  | {
+      type: 'SET_NAME'
+      payload: string
+    }
+  | {
+      type: 'ADD_NAME_IN_LIST'
+    }
+  | {
+      type: 'SET_NAME_IN_LIST'
+      payload: {
+        value: string
+        index: number
+      }
+    }
 
 function reducer(
   state: State | undefined = {
     name: '',
+    nameList: [''],
   },
   action: Action,
-) {
+): State {
   switch (action.type) {
     case 'SET_NAME': {
       return {
@@ -26,7 +39,33 @@ function reducer(
       }
     }
 
+    case 'ADD_NAME_IN_LIST': {
+      const { nameList } = state
+
+      const newNameList = [...nameList]
+      newNameList.push('')
+
+      return {
+        ...state,
+        nameList: newNameList,
+      }
+    }
+
+    case 'SET_NAME_IN_LIST': {
+      const { value, index } = action.payload
+      const { nameList } = state
+
+      const newNameList = [...nameList]
+      newNameList[index] = value
+
+      return {
+        ...state,
+        nameList: newNameList,
+      }
+    }
+
     default: {
+      const _: never = action
       return state
     }
   }
@@ -52,7 +91,15 @@ function AppStaticState() {
 }
 
 function AppInputSimple() {
-  const [name, setName] = useState('')
+  const name = useSelector((state: State) => state.name)
+
+  const dispatch = useDispatch<Dispatch<Action>>()
+  const setName = (name: string) => {
+    dispatch({
+      type: 'SET_NAME',
+      payload: name,
+    })
+  }
 
   return (
     <div>
@@ -63,7 +110,15 @@ function AppInputSimple() {
 }
 
 function AppInput() {
-  const [name, setName] = useState('')
+  const name = useSelector((state: State) => state.name)
+
+  const dispatch = useDispatch<Dispatch<Action>>()
+  const setName = (name: string) => {
+    dispatch({
+      type: 'SET_NAME',
+      payload: name,
+    })
+  }
 
   return (
     <div>
@@ -74,8 +129,17 @@ function AppInput() {
 }
 
 function AppCheckbox() {
+  const name = useSelector((state: State) => state.name)
+
+  const dispatch = useDispatch<Dispatch<Action>>()
+  const setName = (name: string) => {
+    dispatch({
+      type: 'SET_NAME',
+      payload: name,
+    })
+  }
+
   const [checked, setChecked] = useState(false)
-  const [name, setName] = useState('')
 
   return (
     <div>
@@ -94,8 +158,14 @@ function AppCheckbox() {
 }
 
 function AppInputArrayStatic() {
-  const [nameList, setNameList] = useState([''])
-  const add = () => setNameList(list => [...list, ''])
+  const nameList = useSelector((state: State) => state.nameList)
+
+  const dispatch = useDispatch<Dispatch<Action>>()
+  const add = () => {
+    dispatch({
+      type: 'ADD_NAME_IN_LIST',
+    })
+  }
 
   return (
     <div>
@@ -112,8 +182,23 @@ function AppInputArrayStatic() {
 }
 
 function AppInputArray() {
-  const [nameList, setNameList] = useState([''])
-  const add = () => setNameList(list => [...list, ''])
+  const nameList = useSelector((state: State) => state.nameList)
+
+  const dispatch = useDispatch<Dispatch<Action>>()
+  const add = () => {
+    dispatch({
+      type: 'ADD_NAME_IN_LIST',
+    })
+  }
+  const setNameAtIndex = (name: string, index: number) => {
+    dispatch({
+      type: 'SET_NAME_IN_LIST',
+      payload: {
+        value: name,
+        index,
+      },
+    })
+  }
 
   return (
     <div>
@@ -126,16 +211,7 @@ function AppInputArray() {
         <input
           key={i}
           value={name}
-          onChange={e => {
-            const newName = e.target.value
-
-            setNameList(list => {
-              const newNameList = [...list]
-              newNameList[i] = newName
-
-              return newNameList
-            })
-          }}
+          onChange={e => setNameAtIndex(e.target.value, i)}
         />
       ))}
     </div>
