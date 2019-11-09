@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import ReactDOM from 'react-dom'
 
 // #############################################################################
@@ -53,6 +53,7 @@ function AppInput() {
     </div>
   )
 }
+
 // #############################################################################
 //
 
@@ -132,6 +133,54 @@ function AppInputArray() {
 }
 
 // #############################################################################
+//
+
+function AppAsync() {
+  const [value, setValue] = useState('')
+  const [loading, setLoading] = useState(false)
+
+  const callAPI = async () => {
+    setLoading(true)
+
+    const id = Math.floor(10 * Math.random() + 1)
+    const data = await fetch(
+      `https://jsonplaceholder.typicode.com/users/${id}`,
+    ).then(r => r.json())
+
+    setValue(data.name)
+    setLoading(false)
+  }
+
+  return (
+    <div>
+      <h1>Hello {loading ? 'loading...' : value}</h1>
+      <button type="button" onClick={callAPI}>
+        Call API
+      </button>
+    </div>
+  )
+}
+
+// #############################################################################
+//
+
+function AppTimer() {
+  const [count, setCount] = useState(0)
+  const increment = () => setCount(v => v + 1)
+
+  useEffect(() => {
+    const timer = setInterval(increment, 1000)
+    return () => clearInterval(timer)
+  }, [])
+
+  return (
+    <div>
+      <h1>Timer {count}</h1>
+    </div>
+  )
+}
+
+// #############################################################################
 // bootstrap
 
 ReactDOM.render(
@@ -149,6 +198,10 @@ ReactDOM.render(
     <AppInputArrayStatic />
     <hr />
     <AppInputArray />
+    <hr />
+    <AppAsync />
+    <hr />
+    <AppTimer />
   </div>,
   document.getElementById('root'),
 )
