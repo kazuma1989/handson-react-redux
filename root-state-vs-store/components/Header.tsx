@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { Link, useHistory } from 'react-router-dom'
 import { TNotification } from '../types/TNotification'
-import { Link } from './Link'
 
 type Props = {
   logoText: string
@@ -10,6 +10,11 @@ type Props = {
 export function Header({ logoText, notificationList }: Props) {
   const bell = useOpenableState()
   const burger = useOpenableState()
+
+  useHistoryListener(() => {
+    bell.close()
+    burger.close()
+  })
 
   return (
     <nav className="navbar is-link">
@@ -53,6 +58,14 @@ function useOpenableState() {
     toggle,
     close,
   }
+}
+
+function useHistoryListener(listener: () => unknown) {
+  const history = useHistory()
+  useEffect(() => {
+    const unlisten = history.listen(listener)
+    return unlisten
+  }, [])
 }
 
 function LogoItem({ text }: { text: string }) {

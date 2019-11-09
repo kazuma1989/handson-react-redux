@@ -1,5 +1,6 @@
 import React, { useState, useReducer } from 'react'
 import ReactDOM from 'react-dom'
+import { Switch, Route, BrowserRouter } from 'react-router-dom'
 import { createStore, Dispatch } from 'redux'
 import { useSelector, Provider, useDispatch } from 'react-redux'
 import { Showcase } from './components/Showcase'
@@ -28,9 +29,21 @@ function App() {
       header={<Header logoText="logo" notificationList={stub} />}
       footer={<Footer />}
     >
-      <Title label="Notificaions" />
-      <Profile value={stubProfile} />
-      <NotificationList value={stub} />
+      <Switch>
+        <Route exact path="/">
+          <Title label="Profile" />
+          <Profile value={stubProfile} />
+        </Route>
+
+        <Route exact path="/notifications/">
+          <Title label="Notificatinos" />
+          <NotificationList value={stub} />
+        </Route>
+
+        <Route>
+          <Title label="Not Found" />
+        </Route>
+      </Switch>
     </Layout>
   )
 }
@@ -39,9 +52,11 @@ function App() {
 // bootstrap
 
 ReactDOM.render(
-  <Showcase>
-    <App />
-    <App />
-  </Showcase>,
+  <BrowserRouter>
+    <Showcase>
+      <App />
+      <App />
+    </Showcase>
+  </BrowserRouter>,
   document.getElementById('root'),
 )
