@@ -2,11 +2,12 @@ import React, { useState, useReducer } from 'react'
 import ReactDOM from 'react-dom'
 import { createStore, Dispatch } from 'redux'
 import { useSelector, Provider, useDispatch } from 'react-redux'
+import { Showcase } from './components/Showcase'
 import { Layout } from './components/Layout'
 import { Header } from './components/Header'
 import { Footer } from './components/Footer'
-import { NotificationList } from './components/NotificationList'
 import { Title } from './components/Title'
+import { NotificationList } from './components/NotificationList'
 
 const stub = [
   { id: 'x1', read: false, title: 'xxxxxxxxxxxxxx' },
@@ -29,4 +30,10 @@ function App() {
 // #############################################################################
 // bootstrap
 
-ReactDOM.render(<App />, document.getElementById('root'))
+ReactDOM.render(
+  <Showcase>
+    <App />
+    <App />
+  </Showcase>,
+  document.getElementById('root'),
+)
