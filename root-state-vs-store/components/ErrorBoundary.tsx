@@ -1,20 +1,21 @@
 import React from 'react'
 
-export class ErrorBoundary extends React.Component<{}, { hasError: boolean }> {
+export class ErrorBoundary extends React.Component<{}, { err: any }> {
   static getDerivedStateFromError(err) {
-    return { hasError: true }
+    return { err }
   }
 
   constructor(props) {
     super(props)
-    this.state = { hasError: false }
+    this.state = { err: null }
   }
 
   render() {
-    if (this.state.hasError) {
+    const { err } = this.state
+    if (err) {
       return (
         <div className="message is-danger">
-          <div className="message-body">ERROR</div>
+          <div className="message-body">{err.toString && err.toString()}</div>
         </div>
       )
     }
