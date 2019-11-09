@@ -2,7 +2,8 @@
   "private": true,
   "workspaces": [
     "hello-react",
-    "hello-react-redux"
+    "hello-react-redux",
+    "reinventing-redux"
   ],
   "scripts": {
     "format": "prettier --write '**/*.{ts,tsx,json,html,md}'",
