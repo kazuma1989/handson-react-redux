@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 
+// #############################################################################
+//
+
 function AppStatic() {
   return (
     <div>
@@ -8,6 +11,9 @@ function AppStatic() {
     </div>
   )
 }
+
+// #############################################################################
+//
 
 function AppStaticState() {
   const [name, setName] = useState('')
@@ -20,6 +26,9 @@ function AppStaticState() {
   )
 }
 
+// #############################################################################
+//
+
 function AppInputSimple() {
   const [name, setName] = useState('')
 
@@ -31,6 +40,9 @@ function AppInputSimple() {
   )
 }
 
+// #############################################################################
+//
+
 function AppInput() {
   const [name, setName] = useState('')
 
@@ -41,6 +53,8 @@ function AppInput() {
     </div>
   )
 }
+// #############################################################################
+//
 
 function AppCheckbox() {
   const [checked, setChecked] = useState(false)
@@ -62,6 +76,9 @@ function AppCheckbox() {
   )
 }
 
+// #############################################################################
+//
+
 function AppInputArrayStatic() {
   const [nameList, setNameList] = useState([''])
   const add = () => setNameList(list => [...list, ''])
@@ -79,6 +96,9 @@ function AppInputArrayStatic() {
     </div>
   )
 }
+
+// #############################################################################
+//
 
 function AppInputArray() {
   const [nameList, setNameList] = useState([''])
@@ -110,6 +130,9 @@ function AppInputArray() {
     </div>
   )
 }
+
+// #############################################################################
+// bootstrap
 
 ReactDOM.render(
   <div>

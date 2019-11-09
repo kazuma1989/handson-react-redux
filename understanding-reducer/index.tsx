@@ -3,14 +3,14 @@ import ReactDOM from 'react-dom'
 import { createStore, Dispatch } from 'redux'
 import { useSelector, Provider, useDispatch } from 'react-redux'
 
-// --------------------
+// #############################################################################
 // State
 
 type State = {
   count: number
 }
 
-// --------------------
+// #############################################################################
 // useState
 
 function AppUseState() {
@@ -42,7 +42,7 @@ function AppUseState() {
   )
 }
 
-// --------------------
+// #############################################################################
 // wrap useState
 
 function useMyStateHook() {
@@ -84,7 +84,7 @@ function AppUseStateWithMyHooks() {
   )
 }
 
-// --------------------
+// #############################################################################
 // useState and reducer
 
 type Action =
@@ -152,7 +152,7 @@ function AppUseStateWithReducer() {
   )
 }
 
-// --------------------
+// #############################################################################
 // wrap useState and reducer
 
 function useMyReducer(
@@ -193,7 +193,7 @@ function AppUseMyReducer() {
   )
 }
 
-// --------------------
+// #############################################################################
 // useReducer
 
 function AppUseReducer() {
@@ -223,7 +223,7 @@ function AppUseReducer() {
   )
 }
 
-// --------------------
+// #############################################################################
 // with Redux
 
 function AppWithRedux() {
@@ -254,7 +254,7 @@ function AppWithRedux() {
   )
 }
 
-// --------------------
+// #############################################################################
 // bootstrap
 
 const store = createStore(reducer)

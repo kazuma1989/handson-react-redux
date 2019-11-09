@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom'
 import { createStore, Dispatch } from 'redux'
 import { useSelector, Provider, useDispatch } from 'react-redux'
 
+// #############################################################################
+//
+
 type State = {
   name: string
   nameList: string[]
@@ -71,6 +74,9 @@ function reducer(
   }
 }
 
+// #############################################################################
+//
+
 function AppStatic() {
   return (
     <div>
@@ -78,6 +84,9 @@ function AppStatic() {
     </div>
   )
 }
+
+// #############################################################################
+//
 
 function AppStaticState() {
   const name = useSelector((state: State) => state.name)
@@ -89,6 +98,9 @@ function AppStaticState() {
     </div>
   )
 }
+
+// #############################################################################
+//
 
 function AppInputSimple() {
   const name = useSelector((state: State) => state.name)
@@ -109,6 +121,9 @@ function AppInputSimple() {
   )
 }
 
+// #############################################################################
+//
+
 function AppInput() {
   const name = useSelector((state: State) => state.name)
 
@@ -127,6 +142,9 @@ function AppInput() {
     </div>
   )
 }
+
+// #############################################################################
+//
 
 function AppCheckbox() {
   const name = useSelector((state: State) => state.name)
@@ -157,6 +175,9 @@ function AppCheckbox() {
   )
 }
 
+// #############################################################################
+//
+
 function AppInputArrayStatic() {
   const nameList = useSelector((state: State) => state.nameList)
 
@@ -180,6 +201,9 @@ function AppInputArrayStatic() {
     </div>
   )
 }
+
+// #############################################################################
+//
 
 function AppInputArray() {
   const nameList = useSelector((state: State) => state.nameList)
@@ -217,6 +241,9 @@ function AppInputArray() {
     </div>
   )
 }
+
+// #############################################################################
+// bootstrap
 
 const store = createStore(reducer)
 
