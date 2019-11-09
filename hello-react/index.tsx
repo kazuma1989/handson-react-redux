@@ -73,8 +73,8 @@ function AppInputArrayStatic() {
         Add
       </button>
 
-      {nameList.map(name => (
-        <input value={name} />
+      {nameList.map((name, i) => (
+        <input key={i} value={name} />
       ))}
     </div>
   )
@@ -93,6 +93,7 @@ function AppInputArray() {
 
       {nameList.map((name, i) => (
         <input
+          key={i}
           value={name}
           onChange={e => {
             const newName = e.target.value
