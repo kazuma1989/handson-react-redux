@@ -3,7 +3,7 @@
   "workspaces": [
     "hello-react",
     "hello-react-redux",
-    "reinventing-redux"
+    "understanding-reducer"
   ],
   "scripts": {
     "format": "prettier --write '**/*.{ts,tsx,json,html,md}'",
