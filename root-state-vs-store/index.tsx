@@ -8,12 +8,19 @@ import { Header } from './components/Header'
 import { Footer } from './components/Footer'
 import { Title } from './components/Title'
 import { NotificationList } from './components/NotificationList'
+import { Profile } from './components/Profile'
 
 const stub = [
   { id: 'x1', read: false, title: 'xxxxxxxxxxxxxx' },
   { id: 'x2', read: false, title: 'xxxxxxxxxxxxxx' },
   { id: 'x3', read: false, title: 'xxxxxxxxxxxxxx' },
 ]
+const stubProfile = {
+  id: '',
+  name: 'John Smith',
+  sns: '@jsmith',
+  position: 'Development manager',
+}
 
 function App() {
   return (
@@ -22,6 +29,7 @@ function App() {
       footer={<Footer />}
     >
       <Title label="Notificaions" />
+      <Profile value={stubProfile} />
       <NotificationList value={stub} />
     </Layout>
   )
