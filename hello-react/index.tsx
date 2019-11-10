@@ -8,6 +8,7 @@ function AppStatic() {
   return (
     <div>
       <h1>Hello world!</h1>
+
       <p>{new Date().toString()}</p>
     </div>
   )
@@ -16,27 +17,14 @@ function AppStatic() {
 // #############################################################################
 //
 
-function AppStaticState() {
-  const [name, setName] = useState('')
+function AppInputStatic() {
+  let name = 'world'
 
   return (
     <div>
       <h1>Hello {name}!</h1>
+
       <input value={name} />
-    </div>
-  )
-}
-
-// #############################################################################
-//
-
-function AppInputSimple() {
-  const [name, setName] = useState('')
-
-  return (
-    <div>
-      <h1>Hello {name}!</h1>
-      <input value={name} onChange={e => setName(e.target.value)} />
     </div>
   )
 }
@@ -50,6 +38,7 @@ function AppInput() {
   return (
     <div>
       <h1>Hello {name.toUpperCase() || 'world'}!</h1>
+
       <input value={name} onChange={e => setName(e.target.value)} />
     </div>
   )
@@ -65,6 +54,7 @@ function AppCheckbox() {
   return (
     <div>
       <h1>Hello {name.toUpperCase() || 'world'}!</h1>
+
       <input
         type="checkbox"
         checked={checked}
@@ -88,6 +78,7 @@ function AppInputArrayStatic() {
   return (
     <div>
       <h1>Hello {nameList.join(' and ')}!</h1>
+
       <button type="button" onClick={add}>
         Add
       </button>
@@ -109,6 +100,7 @@ function AppInputArray() {
   return (
     <div>
       <h1>Hello {nameList.join(' and ')}!</h1>
+
       <button type="button" onClick={add}>
         Add
       </button>
@@ -155,6 +147,7 @@ function AppAsync() {
   return (
     <div>
       <h1>Hello {loading ? 'loading...' : value}</h1>
+
       <button type="button" onClick={callAPI}>
         Call API
       </button>
@@ -191,13 +184,8 @@ ReactDOM.render(
 
     <hr />
 
-    {AppStaticState.name}
-    <AppStaticState />
-
-    <hr />
-
-    {AppInputSimple.name}
-    <AppInputSimple />
+    {AppInputStatic.name}
+    <AppInputStatic />
 
     <hr />
 
