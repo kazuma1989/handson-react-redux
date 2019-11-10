@@ -185,22 +185,47 @@ function AppTimer() {
 
 ReactDOM.render(
   <div>
+    {AppStatic.name}
     <AppStatic />
+
     <hr />
+
+    {AppStaticState.name}
     <AppStaticState />
+
     <hr />
+
+    {AppInputSimple.name}
     <AppInputSimple />
+
     <hr />
+
+    {AppInput.name}
     <AppInput />
+
     <hr />
+
+    {AppCheckbox.name}
     <AppCheckbox />
+
     <hr />
+
+    {AppInputArrayStatic.name}
     <AppInputArrayStatic />
+
     <hr />
+
+    {AppInputArray.name}
     <AppInputArray />
+
     <hr />
+
+    {AppAsync.name}
     <AppAsync />
+
     <hr />
+
+    {AppTimer.name}
     <AppTimer />
   </div>,
   document.getElementById('root'),
