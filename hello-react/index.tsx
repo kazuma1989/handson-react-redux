@@ -8,6 +8,7 @@ function AppStatic() {
   return (
     <div>
       <h1>Hello world!</h1>
+      <p>{new Date().toString()}</p>
     </div>
   )
 }
